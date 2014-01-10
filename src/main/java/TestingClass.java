@@ -1,9 +1,9 @@
 
 public class TestingClass {
 
+	public String Stam;
+	
 	public TestingClass() {
-		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	
