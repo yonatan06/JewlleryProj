@@ -2,7 +2,7 @@
 public class TestingClass {
 
 	public String Stam1;
-	private String sat;
+	private String sabt;
 	
 	public TestingClass() {
 	}
