@@ -1,0 +1,15 @@
+@CHARSET "ISO-8859-1";
+
+
+.container{
+	background-color: #999999;
+}
+
+.table-striped > tbody > tr:nth-child(odd) > td,
+.table-striped > tbody > tr:nth-child(odd) > th {
+  background-color: #999999;
+}
+
+body {
+	margin-top: 70px;
+}
