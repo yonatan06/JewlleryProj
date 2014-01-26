@@ -23,9 +23,17 @@ public class MainController {
 		return "home";
 	}
 	
+	@RequestMapping(value = "/example", method = RequestMethod.GET)
+	public String example(){
+		mainService.saveImage(new ImgDesc("img/1.jpg"));
+		mainService.saveImage(new ImgDesc("img/2.jpg"));
+		return "example";
+	}
+	
 	@RequestMapping(value = "/getimages", method = RequestMethod.GET)
 	public @ResponseBody List<ImgDesc> getImages(){
-		return mainService.getImages();
+		List<ImgDesc> result = mainService.getImages(); 
+		return result;
 	}
 	
 	

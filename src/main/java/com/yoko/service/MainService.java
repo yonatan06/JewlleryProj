@@ -6,8 +6,10 @@ import com.yoko.model.ImgDesc;
 
 public interface MainService {
 
-	public String getHomeHtml();
+	String getHomeHtml();
 
-	public List<ImgDesc> getImages();
+	void saveImage(ImgDesc imgDesc);
+	
+	List<ImgDesc> getImages();
 
 }

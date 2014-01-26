@@ -6,6 +6,21 @@ xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns
   
   <display-name>Archetype Created Web Application</display-name>
   
+   <!-- hibernate config -->
+  
+  <context-param>
+  	<param-name>contextConfigLocation</param-name>
+  	<param-value>classpath:/jpaContext.xml</param-value>
+  </context-param>
+  
+  <listener>
+  	<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>
+  
+  <!-- end of hibernate config -->
+  
+  <!-- spring servlet config -->
+  
   <servlet>
   	<servlet-name>webappServlet</servlet-name>
   	<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
@@ -29,5 +44,7 @@ xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns
 	  	<servlet-name>webappServlet</servlet-name>
 	  	<url-pattern>*.json</url-pattern>
   	</servlet-mapping>
+  	
+  <!-- end of spring servlet config -->
   
 </web-app>
