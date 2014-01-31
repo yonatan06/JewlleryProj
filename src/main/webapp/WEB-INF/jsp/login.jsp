@@ -20,8 +20,16 @@
 			<jsp:include page="navbar"/>
 		</nav>
 	</header>
-	
-	
+	<section id="main">
+		<div class="login row col-md-4 col-md-offset-4">
+			<h3>Login</h3>
+			<form:form commandName="login">
+				<input name="usernameInput" class="form-control" placeholder="Insert username here">
+				<input name="passwordInput" class="form-control" placeholder="Insert password here">	
+				<input type="submit" value="Login" class="btn btn-success">
+			</form:form>
+		</div>
+	</section>
 	<footer>
 	
 	</footer>
