@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.yoko.model.CarInstance;
 import com.yoko.model.CarModel;
 import com.yoko.model.FuelRecord;
+import com.yoko.model.MyStatisticsReport;
 import com.yoko.model.User;
 
 public interface MainService {
@@ -26,5 +27,9 @@ public interface MainService {
 	public abstract List<CarModel> loadAllCarModels();
 
 	public abstract List<FuelRecord> loadAllFuelRecords();
+
+	public abstract String getCurrentTimestamp();
+
+	public abstract MyStatisticsReport getMyStatisticsReport();
 
 }

@@ -33,17 +33,17 @@ public class MainController {
 //	}
 //	
 	
-	@RequestMapping(value= "/home" , method = RequestMethod.GET)
-	public String getHomePage(){
-		return "login";
-	}
-	
-	@RequestMapping(value= "/home" , method = RequestMethod.POST)
-	public String login(){
-		return "home";
-	}
-	
-	
+//	@RequestMapping(value= "/home" , method = RequestMethod.GET)
+//	public String getHomePage(){
+//		return "login";
+//	}
+//	
+//	@RequestMapping(value= "/home" , method = RequestMethod.POST)
+//	public String login(){
+//		return "home";
+//	}
+//	
+//	
 	
 	
 	

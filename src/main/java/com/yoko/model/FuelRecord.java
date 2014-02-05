@@ -1,7 +1,5 @@
 package com.yoko.model;
 
-import java.util.Date;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -10,13 +8,13 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "FUEL_RECORDS")
-public class FuelRecord {
+public class FuelRecord{
 
 	@Id
 	@GeneratedValue
 	private Long id;
 	
-	private Date timestamp;
+	private String timestamp;
 	
 	private int currentKM;
 	
@@ -35,11 +33,11 @@ public class FuelRecord {
 		this.id = id;
 	}
 
-	public Date getTimestamp() {
+	public String getTimestamp() {
 		return timestamp;
 	}
 
-	public void setTimestamp(Date timestamp) {
+	public void setTimestamp(String timestamp) {
 		this.timestamp = timestamp;
 	}
 
@@ -73,8 +71,7 @@ public class FuelRecord {
 
 	public void setUser(User user) {
 		this.user = user;
-	}
-	
+	}	
 	
 	
 }

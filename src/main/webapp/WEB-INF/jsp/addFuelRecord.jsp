@@ -21,12 +21,23 @@
 		</nav>
 	</header>
 	<section id="main">
-		<div class="login row col-md-4 col-md-offset-4">
+		<div class="yk-form row col-md-4 col-md-offset-4">
 			<h3>Login</h3>
-			<form:form commandName="login">
-				<input name="amount" class="form-control" placeholder="insert fuel amount in liters">
-				<input name="price" class="form-control" placeholder="enter total price">	
-				<input type="submit" value="Login" class="btn btn-success" onclick="addFuelRecord()">
+			<form:form commandName="fuelRecord">
+				<table class="table">
+					<tr>
+						<td>Amount:</td><td><form:input path="amount" class="form-control"/></td>
+					</tr>
+					<tr>
+						<td>Price:</td><td><form:input path="price" class="form-control"/></td>
+					</tr>
+					<tr>
+						<td>currentKM:</td><td><form:input path="currentKM" class="form-control"/></td>
+					</tr>
+					<tr>
+						<td><input type="submit" value="Add Fuel Record" class="btn btn-success"/></td>
+					</tr>
+				</table>
 			</form:form>
 		</div>
 	</section>
