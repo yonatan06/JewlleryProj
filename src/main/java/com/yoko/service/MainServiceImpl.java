@@ -13,17 +13,16 @@ import com.yoko.model.CarInstance;
 import com.yoko.model.CarModel;
 import com.yoko.model.FuelRecord;
 import com.yoko.model.MyStatisticsReport;
-import com.yoko.model.User;
 import com.yoko.repository.CarInstanceRepository;
 import com.yoko.repository.CarModelRepository;
 import com.yoko.repository.FuelRecordRepository;
-import com.yoko.repository.UserRepository;
+//import com.yoko.repository.UserRepository;
 
 @Service("mainService")
 public class MainServiceImpl implements MainService{
 	
-	@Autowired
-	private UserRepository userRepository;
+//	@Autowired
+//	private UserRepository userRepository;
 	
 	@Autowired
 	private CarInstanceRepository carInstanceRepository;
@@ -35,10 +34,10 @@ public class MainServiceImpl implements MainService{
 	private FuelRecordRepository fuelRecordRepository;
 	
 	
-	@Transactional
-	public void saveUser(User user){
-		userRepository.save(user);
-	}
+//	@Transactional
+//	public void saveUser(User user){
+//		userRepository.save(user);
+//	}
 
 	@Transactional
 	public void saveCarInstance(CarInstance carInstance){
@@ -56,9 +55,9 @@ public class MainServiceImpl implements MainService{
 	}
 	
 	
-	public List<User> loadAllUsers(){
-		return userRepository.findAll();
-	}
+//	public List<User> loadAllUsers(){
+//		return userRepository.findAll();
+//	}
 
 	public List<CarInstance> loadAllCarInstances(){
 		return carInstanceRepository.findAll();
