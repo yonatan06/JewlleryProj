@@ -14,6 +14,7 @@ public class MainController {
 	@Autowired
 	private MainService mainService;
 	
+	
 //	@RequestMapping(value = "/home", method = RequestMethod.GET)
 //	public String findAllActivities(){
 //		return "home";

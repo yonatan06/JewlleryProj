@@ -82,7 +82,9 @@ public class MainServiceImpl implements MainService{
 		MyStatisticsReport report = new MyStatisticsReport();
 		//need to get fuel records sorted by date
 		report.setFuelRecords(fuelRecords);
-		report.setCurrentCarKM(fuelRecords.get(fuelRecords.size()-1).getCurrentKM());
+		if(!fuelRecords.isEmpty()){
+			report.setCurrentCarKM(fuelRecords.get(fuelRecords.size()-1).getCurrentKM());
+		}
 		float avarageFuelConsume = getAvarageFuelConsume(fuelRecords);
 		report.setAvarageFuelConsume(avarageFuelConsume);
 		return report;

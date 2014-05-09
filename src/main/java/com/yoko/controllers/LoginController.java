@@ -32,7 +32,7 @@ public class LoginController {
 
 	@RequestMapping (value="/login",method=RequestMethod.GET)
 	public String getHomePage (ModelMap model){
-		return "koby";
+		return "login";
 	}
 	
 //	@RequestMapping (value="/login",method=RequestMethod.POST)

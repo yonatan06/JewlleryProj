@@ -8,6 +8,11 @@ xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns
   
    <!-- hibernate config -->
   
+  
+ 	<welcome-file-list>
+   		<welcome-file>/globalStatistics.html</welcome-file>
+	</welcome-file-list>
+  
   <context-param>
   	<param-name>contextConfigLocation</param-name>
   	<param-value>
