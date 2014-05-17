@@ -17,3 +17,16 @@ function handleGetMyStatisticsReport(report){
 	var tableContent = currentKMTableRow+avarageFuelConsumeTableRow;
 	$(".myStatisticsBoard table").html(tableContent);
 }
+
+
+
+
+function handleGetCarModelsOnSignUp(carModels){
+	alert(1);
+	$.each(fuelRecords, function( index, fuelRecord ) {
+		var tableRow = getFuelRecordTableRow(fuelRecord);
+		$(".myStatisticsTable table").append(tableRow);
+	});
+	$('#carModels').html(html);
+}
+

@@ -33,3 +33,15 @@ function getTableRowWithHeader(arr){
 	tableRow += "</tr>";
 	return tableRow;	
 }
+
+function generateOptions(options){
+	var html = '<option value="">--Please select one--</option>';
+	var len = options.length;
+	for (var i = 0; i < len; i++) {
+		html += '<option value="' + options[i].desc + '">'
+				+ options[i].desc + '</option>';
+	}
+	html += '</option>';
+	return html;
+}
+
