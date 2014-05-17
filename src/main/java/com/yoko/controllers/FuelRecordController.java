@@ -8,14 +8,16 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.yoko.model.FuelRecord;
+import com.yoko.model.MyStatisticsReport;
 import com.yoko.service.MainService;
 
 @Controller
 @SessionAttributes("fuelRecord")
-public class AddFuelRecordController {
+public class FuelRecordController {
 
 	@Autowired
 	private MainService mainService;
@@ -36,10 +38,10 @@ public class AddFuelRecordController {
 		return "redirect:myStatistics.html";
 	}
 	
-//	@RequestMapping(value= "/home" , method = RequestMethod.POST)
-//	public String login(){
-//		return "home";
-//	}
+	@RequestMapping(value= "/getFuelRecords" , method = RequestMethod.GET)
+	public @ResponseBody MyStatisticsReport getFuelRecords(){
+		return mainService.getMyStatisticsReport();
+	}
 	
 	
 }

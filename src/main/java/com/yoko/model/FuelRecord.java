@@ -21,9 +21,6 @@ public class FuelRecord{
 	private float amount;
 	
 	private float price;
-	
-//	@ManyToOne
-//	private User user;
 
 	public Long getId() {
 		return id;

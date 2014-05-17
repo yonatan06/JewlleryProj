@@ -1,9 +1,12 @@
 package com.yoko.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 
@@ -11,14 +14,22 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "CAR_INSTANCES")
 public class CarInstance {
-
 	
 	@Id
 	@GeneratedValue
 	private Long id;
 	
+	private String color;
+	
+	private int year;
+	
 	@ManyToOne
 	private CarModel carModel;
+	
+	@OneToOne(mappedBy = "carInstance", cascade = CascadeType.ALL)
+	private UserInfo userInfo;
+	
+	
 	public Long getId() {
 		return id;
 	}
@@ -43,7 +54,6 @@ public class CarInstance {
 	public void setYear(int year) {
 		this.year = year;
 	}
-	private String color;
-	private int year;
+
 	
 }

@@ -9,14 +9,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.yoko.model.Authority;
+import com.yoko.model.Authority.Role;
 import com.yoko.model.CarInstance;
 import com.yoko.model.CarModel;
+import com.yoko.model.CreateUser;
 import com.yoko.model.FuelRecord;
 import com.yoko.model.MyStatisticsReport;
-import com.yoko.repository.CarInstanceRepository;
-import com.yoko.repository.CarModelRepository;
-import com.yoko.repository.FuelRecordRepository;
+import com.yoko.model.User;
+import com.yoko.model.UserInfo;
+import com.yoko.repository.ICarInstanceRepository;
+import com.yoko.repository.ICarModelRepository;
+import com.yoko.repository.IFuelRecordRepository;
+import com.yoko.repository.IAuthorityRepository;
 //import com.yoko.repository.UserRepository;
+import com.yoko.repository.IUserInfoRepository;
+import com.yoko.repository.IUserRepository;
 
 @Service("mainService")
 public class MainServiceImpl implements MainService{
@@ -25,14 +33,22 @@ public class MainServiceImpl implements MainService{
 //	private UserRepository userRepository;
 	
 	@Autowired
-	private CarInstanceRepository carInstanceRepository;
+	private ICarInstanceRepository carInstanceRepository;
 	
 	@Autowired
-	private CarModelRepository carModelRepository;
+	private ICarModelRepository carModelRepository;
 	
 	@Autowired
-	private FuelRecordRepository fuelRecordRepository;
+	private IFuelRecordRepository fuelRecordRepository;
 	
+	@Autowired
+	private IUserInfoRepository userInfoRepository;
+	
+	@Autowired
+	private IUserRepository userRepository; 
+	
+	@Autowired
+	private IAuthorityRepository authorityRepository;
 	
 //	@Transactional
 //	public void saveUser(User user){
@@ -114,6 +130,30 @@ public class MainServiceImpl implements MainService{
 		}
 		return sum/arr.length;
 	}
+
+	public void createUser(CreateUser createUser) {
+		UserInfo userInfo = createUser.getUserInfo();
+		
+		User user = new User();
+		user.setPassword(createUser.getPassword());
+		user.setUsername(userInfo.getUsername());
+		userRepository.saveUser(user);
+
+		userInfoRepository.saveAndFlush(userInfo);
+		
+		Authority authority = new Authority();
+		authority.setUsername(userInfo.getUsername());
+		authority.setRole(Role.USER);
+		authorityRepository.saveAuthority(authority);
+		
+	}
+
+	
+//	public void createUser(CreateUser userInfo){
+////		userInfoRepository.saveAndFlush(userInfo);
+////		userRepository.saveUser(user);
+//	}
+	
 	
 }
  

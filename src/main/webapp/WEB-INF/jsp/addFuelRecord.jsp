@@ -17,7 +17,7 @@
 <body>
 	<header>
 		<nav id="menu">
-			<jsp:include page="navbar"/>
+			<jsp:include page="navbar.jsp"/>
 		</nav>
 	</header>
 	<section id="main">

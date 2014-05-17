@@ -18,7 +18,7 @@
 		
 		<header>
 			<nav id="menu">
-				<jsp:include page="navbar"/>
+				<jsp:include page="navbar.jsp"/>
 			</nav>
 		</header>
 		<h3>Fitness Tracker Custom Login Page</h3>
@@ -38,6 +38,10 @@
 					<input name="j_password" type="password" class="form-control" placeholder="password">	
 					<input type="submit" name="Submit" value="Submit" class="btn btn-success">
 				</form:form>
+				<form:form commandName="userInfo" action="signUp.html" method="get">
+					Not signed up? <input type="submit" name="SignUp" value="Sign up" class="btn btn-default">
+				</form:form>
+				
 			</div>
 		</section>
 		

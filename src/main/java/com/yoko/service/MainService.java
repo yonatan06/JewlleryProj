@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.yoko.model.CarInstance;
 import com.yoko.model.CarModel;
+import com.yoko.model.CreateUser;
 import com.yoko.model.FuelRecord;
 import com.yoko.model.MyStatisticsReport;
 
@@ -28,5 +29,7 @@ public interface MainService {
 	public abstract String getCurrentTimestamp();
 
 	public abstract MyStatisticsReport getMyStatisticsReport();
+
+	public abstract void createUser(CreateUser createUser);
 
 }
