@@ -7,6 +7,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Car Statistics</title>
+<link href="styles/site.css" rel="stylesheet"></link>
 <script type="text/javascript" src="scripts/jquery-2.0.3.js"></script>
 <script type="text/javascript" src="styles/bootstrap/js/bootstrap.js"></script>
 <script type="text/javascript" src="scripts/helperFunctions.js"></script>
@@ -16,14 +17,15 @@
 			$.getJSON(url,{ajax : 'true'},handler);
 		}
 		
+		function bla(data){
+			alert(data);
+		}
+		
 		$(document).ready(function(){
 			getJson('<spring:url value="getCarModels.json"/>', handleGetCarModelsOnSignUp);
 		});
 		
 </script>
-
-<link href="bootstrap/css/bootstrap-theme.css" rel="stylesheet"></link>
-<link href="styles/site.css" rel="stylesheet"></link>
 
 </head>
 <body>

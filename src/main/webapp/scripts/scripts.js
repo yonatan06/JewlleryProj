@@ -21,12 +21,7 @@ function handleGetMyStatisticsReport(report){
 
 
 
-function handleGetCarModelsOnSignUp(carModels){
-	alert(1);
-	$.each(fuelRecords, function( index, fuelRecord ) {
-		var tableRow = getFuelRecordTableRow(fuelRecord);
-		$(".myStatisticsTable table").append(tableRow);
-	});
-	$('#carModels').html(html);
+function handleGetCarModelsOnSignUp(carModels){	
+	$('#carModels').html(generateOptions(carModels));
 }
 

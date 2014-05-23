@@ -3,14 +3,13 @@
     pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>    
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<!DOCTYPE html">
+<!DOCTYPE html>
 <html>
 	<head>
 		<title>Custom Login Page</title>
 		<script type="text/javascript" src="scripts/jquery-2.0.3.js"></script>
 		<script type="text/javascript" src="styles/bootstrap/js/bootstrap.js"></script>
 		<script type="text/javascript" src="scripts/onLoad.js"></script>
-		<link href="bootstrap/css/bootstrap-theme.css" rel="stylesheet"></link>
 		<link href="styles/site.css" rel="stylesheet"></link>
 	</head>
 	

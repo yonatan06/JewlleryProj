@@ -11,10 +11,14 @@
 
 <http auto-config="true" use-expressions="true">
 	<intercept-url pattern="/globalStatistics.html" access="permitAll" requires-channel="https"/>
+	
 	<intercept-url pattern="/signUp.html" access="permitAll" requires-channel="https"/>
+	<intercept-url pattern="/getCarModels.json" access="permitAll" requires-channel="https"/>
 	<intercept-url pattern="/bootstrap/css/bootstrap-theme.css" access="permitAll" requires-channel="https"/>
 	<intercept-url pattern="/styles/site.css" access="permitAll" requires-channel="https"/>
 	<intercept-url pattern="/scripts/onLoad.js" access="permitAll" requires-channel="https"/>
+	<intercept-url pattern="/scripts/helperFunctions.js" access="permitAll" requires-channel="https"/>
+	<intercept-url pattern="/scripts/scripts.js" access="permitAll" requires-channel="https"/>
 	<intercept-url pattern="/scripts/jquery-2.0.3.js" access="permitAll" requires-channel="https"/>
 	<intercept-url pattern="/styles/bootstrap/js/bootstrap.js" access="permitAll" requires-channel="https"/> 
 	<intercept-url pattern="/login.html" access="permitAll" requires-channel="https"/>
