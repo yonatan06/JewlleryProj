@@ -22,6 +22,22 @@ function handleGetMyStatisticsReport(report){
 
 
 function handleGetCarModelsOnSignUp(carModels){	
-	$('#carModels').html(generateOptions(carModels));
+	$('#carModels').html(generateOptions(carModels,'Select Car Model'));
+}
+
+function fillCarYearFormSelect(){
+	var years,i,startYear,endYear;
+	startYear = 1960;
+	endYear = 2014;
+	years = [];
+    for (i = endYear; i >= startYear; i -= 1) {
+    	years[endYear-i] = i;
+    }
+	$('#carYear').html(generateOptions(years,'Select Car Year'));
+}
+
+function fillCarColorFormSelect(){
+	var colors = ['black','white','silver','gold','cyan','blue','brown','gray','green','orange','pink','purple','red','yellow'];
+	$('#carColor').html(generateOptions(colors,'Select Car Color'));
 }
 

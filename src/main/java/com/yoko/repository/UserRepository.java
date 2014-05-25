@@ -24,13 +24,11 @@ public class UserRepository implements IUserRepository{
 		 String query = "INSERT INTO users VALUES (?, ?, ?)";
 
 		 JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
-		 update(jdbcTemplate,query,user.getUsername(),password,1);
+		 RepositoryTools.update(jdbcTemplate,query,user.getUsername(),password,1);
 		 
 	 }
 	
-	private void update(JdbcTemplate jdbcTemplate,String sql,Object... objs) {
-		jdbcTemplate.update(sql,objs);
-	}
+
 
 	private String encodePassword(String password) {
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();

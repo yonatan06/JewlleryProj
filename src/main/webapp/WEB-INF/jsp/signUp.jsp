@@ -23,6 +23,8 @@
 		
 		$(document).ready(function(){
 			getJson('<spring:url value="getCarModels.json"/>', handleGetCarModelsOnSignUp);
+			fillCarYearFormSelect();
+			fillCarColorFormSelect();
 		});
 		
 </script>
@@ -35,9 +37,6 @@
 		</nav>
 	</header>
 	
-	
-
-
 	<div class="signup row col-md-4 col-md-offset-4">
 		<h3>Sign Up</h3>
 		<form:form commandName="createUser" action="signUp.html" method="post">
@@ -56,11 +55,11 @@
 		    </tr>
 		    <tr>
 		        <td><form:label path="password" class="form-label">Password</form:label></td>
-		        <td><form:input path="password" class="form-control pretty-form-control"/></td>
+		        <td><form:password path="password" class="form-control pretty-form-control"/></td>
 		    </tr>
 		    <tr>
 		        <td><form:label path="retypePassword" class="form-label">Retype Password</form:label></td>
-		        <td><form:input path="retypePassword" class="form-control pretty-form-control"/></td>
+		        <td><form:password path="retypePassword" class="form-control pretty-form-control"/></td>
 		    </tr>
 		    
 		    <tr>
@@ -68,12 +67,16 @@
 		    </tr>
 		    
 		    <tr>
-		        <td><form:label path="userInfo.carInstance.color" class="form-label">Car Color</form:label></td>
-		        <td><form:input path="userInfo.carInstance.color" class="form-control pretty-form-control"/></td>
+		    	<td><form:label path="userInfo.carInstance.carModel.model" class="form-label">Car Model</form:label></td>
+		        <td><form:select path="userInfo.carInstance.carModel.model" class="form-control pretty-form-control" id="carModels"/></td>
 		    </tr>
 		    <tr>
-		    	<td><form:label path="userInfo.carInstance.carModel.model" class="form-label">Car Model</form:label></td>
-		        <td><form:select path="userInfo.carInstance.carModel.model" id="carModels"/></td>
+		        <td><form:label path="userInfo.carInstance.color" class="form-label">Car Color</form:label></td>
+		        <td><form:select path="userInfo.carInstance.color" class="form-control pretty-form-control" id = "carColor"/></td>
+		    </tr>
+			<tr>
+		        <td><form:label path="userInfo.carInstance.year" class="form-label">Car year</form:label></td>
+		        <td><form:select path="userInfo.carInstance.year" class="form-control pretty-form-control" id = "carYear"/></td>
 		    </tr>
 			<tr>
 				<td><input type="submit" name="Sign up" value="Sign up" class="btn btn-success"></td>
@@ -81,10 +84,6 @@
 			</table>
 		</form:form>
 	</div>
-
-	
-	
-
 
 	<footer>
 	

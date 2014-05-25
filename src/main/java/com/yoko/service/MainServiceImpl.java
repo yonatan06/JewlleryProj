@@ -20,6 +20,7 @@ import com.yoko.model.User;
 import com.yoko.model.UserInfo;
 import com.yoko.repository.ICarInstanceRepository;
 import com.yoko.repository.ICarModelRepository;
+import com.yoko.repository.ICarModelRepositoryCustom;
 import com.yoko.repository.IFuelRecordRepository;
 import com.yoko.repository.IAuthorityRepository;
 //import com.yoko.repository.UserRepository;
@@ -37,6 +38,9 @@ public class MainServiceImpl implements MainService{
 	
 	@Autowired
 	private ICarModelRepository carModelRepository;
+	
+	@Autowired
+	private ICarModelRepositoryCustom carModelRepositoryCustom;
 	
 	@Autowired
 	private IFuelRecordRepository fuelRecordRepository;
@@ -133,7 +137,9 @@ public class MainServiceImpl implements MainService{
 
 	public void createUser(CreateUser createUser) {
 		UserInfo userInfo = createUser.getUserInfo();
-		
+		String unparsedCarModel = userInfo.getCarInstance().getCarModel().getModel();
+		CarModel carModel = getCarModel(unparsedCarModel);
+		userInfo.getCarInstance().setCarModel(carModel);
 		User user = new User();
 		user.setPassword(createUser.getPassword());
 		user.setUsername(userInfo.getUsername());
@@ -146,6 +152,19 @@ public class MainServiceImpl implements MainService{
 		authority.setRole(Role.USER);
 		authorityRepository.saveAuthority(authority);
 		
+	}
+
+	private CarModel getCarModel(String unparsedCarModel) {
+		String[] splitted = unparsedCarModel.split(" - ");
+		if(splitted.length != 2){
+			System.out.println("MainService.getCarModel: Wrong num of arguments in unparsed car model");
+		}
+			
+		String company = splitted[0];
+		String model = splitted[1];
+		
+		CarModel carModel = carModelRepositoryCustom.findByCompanyAndModel(company,model);
+		return carModel;
 	}
 
 

@@ -34,10 +34,10 @@ function getTableRowWithHeader(arr){
 	return tableRow;	
 }
 
-function generateOptions(options) {
+function generateOptions(options,label) {
     "use strict";
     var i, html;
-    html = '<option value="">--Please select one--</option>';
+    html = '<option value="">'+label+'</option>';
     for (i = 0; i < options.length; i += 1) {
         html += '<option value="' + options[i] + '">'
             + options[i] + '</option>';
