@@ -17,12 +17,12 @@
 			$.getJSON(url,{ajax : 'true'},handler);
 		}
 		
-		function bla(data){
-			alert(data);
+		function getCarModelsOnSignUp(){
+			$.post('<spring:url value="getCarModels.json"/>', getSelectedCarBrandOnSignUp(),handleGetCarModelsOnSignUp, "json");
 		}
 		
 		$(document).ready(function(){
-			getJson('<spring:url value="getCarModels.json"/>', handleGetCarModelsOnSignUp);
+			getJson('<spring:url value="getCarModels.json"/>', handleGetCarBrandsOnSignUp);
 			fillCarYearFormSelect();
 			fillCarColorFormSelect();
 		});
@@ -66,6 +66,10 @@
 		        <td><h3>Please fill in your car details</h3></td>
 		    </tr>
 		    
+		    <tr>
+		    	<td><form:label path="userInfo.carInstance.carModel.company" class="form-label">Car Brand</form:label></td>
+		        <td><form:select path="userInfo.carInstance.carModel.company" onchange="javascript:getCarModelsOnSignUp();" class="form-control pretty-form-control" id="carBrands"/></td>
+		    </tr>
 		    <tr>
 		    	<td><form:label path="userInfo.carInstance.carModel.model" class="form-label">Car Model</form:label></td>
 		        <td><form:select path="userInfo.carInstance.carModel.model" class="form-control pretty-form-control" id="carModels"/></td>

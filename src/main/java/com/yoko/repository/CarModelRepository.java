@@ -30,11 +30,6 @@ public class CarModelRepository implements ICarModelRepositoryCustom {
 		return carModel;
 	}
 		
-
-	
-	
-	
-	
 	private class CarModelRowMapper implements RowMapper<CarModel>{
 
 		public CarModel mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -45,6 +40,32 @@ public class CarModelRepository implements ICarModelRepositoryCustom {
 			return carModel;
 		}
 		
+	}
+
+
+	public List<String> getCarModels(String carBrand) {
+		String query = "SELECT model FROM car_models c where c.company = ?";
+		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+		RowMapper<String> rowMapper = new RowMapper<String>() {
+			public String mapRow(ResultSet rs, int rowNum) throws SQLException {
+				return rs.getString("model");
+			}
+		};
+		List<String> lst = RepositoryTools.queryList(jdbcTemplate,query,rowMapper,carBrand);
+		return lst;
+	}
+
+
+	public List<String> getCarBrands() {
+		String query = "SELECT DISTINCT company FROM car_models";
+		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+		RowMapper<String> rowMapper = new RowMapper<String>() {
+			public String mapRow(ResultSet rs, int rowNum) throws SQLException {
+				return rs.getString("company");
+			}
+		};
+		List<String> lst = RepositoryTools.queryList(jdbcTemplate,query,rowMapper);
+		return lst;
 	}
 
 

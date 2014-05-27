@@ -1,15 +1,14 @@
 package com.yoko.controllers;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.yoko.model.CarModel;
 import com.yoko.service.MainService;
 
 @Controller
@@ -28,14 +27,19 @@ public class MyStatisticsController {
 	}
 	
 	@RequestMapping(value= "/getCarModels" , method = RequestMethod.GET)
-	public @ResponseBody List<String> getCarModels(){ 
-		System.out.println("got car model requets!");
-		List<String> retVal = new ArrayList<String>();
-		List<CarModel> carModels = mainService.loadAllCarModels();
-		for (CarModel carModel : carModels) {
-			retVal.add(carModel.getCompany()+" - "+carModel.getModel());
+	public @ResponseBody List<String> getCarBrands(){ 
+		return mainService.getCarBrands();
+	}
+	
+	@RequestMapping(value= "/getCarModels" , method = RequestMethod.POST)
+	public @ResponseBody List<String> getCarModels(@RequestBody String carBrand){
+		if(carBrand == null){
+			return null;
 		}
-		return retVal;
+		if(carBrand.endsWith("=")){
+			carBrand = carBrand.substring(0,carBrand.length()-1);
+		}
+		return mainService.getCarModels(carBrand);
 	}
 	
 	

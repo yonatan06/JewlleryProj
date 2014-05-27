@@ -24,13 +24,17 @@ public interface MainService {
 
 	public abstract List<CarModel> loadAllCarModels();
 
-	public abstract List<FuelRecord> loadAllFuelRecords();
+	public abstract List<FuelRecord> getFuelRecords(String loggedInUserName);
 
 	public abstract String getCurrentTimestamp();
 
 	public abstract MyStatisticsReport getMyStatisticsReport();
 
 	public abstract void createUser(CreateUser createUser);
+
+	public abstract List<String> getCarModels(String carBrand);
+
+	public abstract List<String> getCarBrands();
 
 
 }

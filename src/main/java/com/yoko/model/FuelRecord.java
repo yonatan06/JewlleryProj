@@ -21,6 +21,9 @@ public class FuelRecord{
 	private float amount;
 	
 	private float price;
+	
+	@ManyToOne
+	private UserInfo userInfo;
 
 	public Long getId() {
 		return id;
@@ -62,13 +65,13 @@ public class FuelRecord{
 		this.price = price;
 	}
 
-//	public User getUser() {
-//		return user;
-//	}
-//
-//	public void setUser(User user) {
-//		this.user = user;
-//	}	
-	
+	public UserInfo getUserInfo() {
+		return userInfo;
+	}
+
+	public void setUserInfo(UserInfo userInfo) {
+		this.userInfo = userInfo;
+	}
+
 	
 }

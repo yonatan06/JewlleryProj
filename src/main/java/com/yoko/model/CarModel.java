@@ -21,7 +21,11 @@ public class CarModel {
 		private Long id;
 		
 		private String company;
+		
 		private String model;
+		
+		@OneToMany(mappedBy="carModel", cascade=CascadeType.ALL , fetch=FetchType.LAZY)
+		private List<CarInstance> carInstances;
 		
 		public Long getId() {
 			return id;
@@ -55,7 +59,6 @@ public class CarModel {
 			this.carInstances = carInstances;
 		}
 
-		@OneToMany(mappedBy="carModel", cascade=CascadeType.ALL , fetch=FetchType.EAGER)
-		private List<CarInstance> carInstances;
+
 
 }

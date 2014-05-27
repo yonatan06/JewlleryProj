@@ -1,3 +1,4 @@
+
 function handleGetFuelRecords(fuelRecords){
 	$.each(fuelRecords, function( index, fuelRecord ) {
 		var tableRow = getFuelRecordTableRow(fuelRecord);
@@ -18,11 +19,16 @@ function handleGetMyStatisticsReport(report){
 	$(".myStatisticsBoard table").html(tableContent);
 }
 
+function getSelectedCarBrandOnSignUp(){
+	return $('#carBrands').val();
+}
 
+function handleGetCarModelsOnSignUp(carModels,textStatus){
+	$('#carModels').html(generateOptions(carModels));
+}
 
-
-function handleGetCarModelsOnSignUp(carModels){	
-	$('#carModels').html(generateOptions(carModels,'Select Car Model'));
+function handleGetCarBrandsOnSignUp(carModels){
+	$('#carBrands').html(generateOptions(carModels,'Select Car Brand'));
 }
 
 function fillCarYearFormSelect(){

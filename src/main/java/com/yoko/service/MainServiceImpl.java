@@ -6,6 +6,8 @@ import java.util.Calendar;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,11 +20,12 @@ import com.yoko.model.FuelRecord;
 import com.yoko.model.MyStatisticsReport;
 import com.yoko.model.User;
 import com.yoko.model.UserInfo;
+import com.yoko.repository.IAuthorityRepository;
 import com.yoko.repository.ICarInstanceRepository;
 import com.yoko.repository.ICarModelRepository;
 import com.yoko.repository.ICarModelRepositoryCustom;
 import com.yoko.repository.IFuelRecordRepository;
-import com.yoko.repository.IAuthorityRepository;
+import com.yoko.repository.IFuelRecordRepositoryCustom;
 //import com.yoko.repository.UserRepository;
 import com.yoko.repository.IUserInfoRepository;
 import com.yoko.repository.IUserRepository;
@@ -44,6 +47,9 @@ public class MainServiceImpl implements MainService{
 	
 	@Autowired
 	private IFuelRecordRepository fuelRecordRepository;
+	
+	@Autowired
+	private IFuelRecordRepositoryCustom fuelRecordRepositoryCustom;
 	
 	@Autowired
 	private IUserInfoRepository userInfoRepository;
@@ -71,6 +77,9 @@ public class MainServiceImpl implements MainService{
 
 	@Transactional
 	public void saveFuelRecord(FuelRecord fuelRecord){
+		String loggedInUsername = getLoggedInUsername();
+		UserInfo userInfo = userInfoRepository.findOne(loggedInUsername);
+		fuelRecord.setUserInfo(userInfo);
 		fuelRecordRepository.save(fuelRecord);
 	}
 	
@@ -87,8 +96,8 @@ public class MainServiceImpl implements MainService{
 		return carModelRepository.findAll();
 	}
 
-	public List<FuelRecord> loadAllFuelRecords(){
-		return fuelRecordRepository.findAll();
+	public List<FuelRecord> getFuelRecords(String loggedInUserName){
+		return fuelRecordRepositoryCustom.getUserFuelRecords(loggedInUserName);
 	}
 
 	public String getCurrentTimestamp() {
@@ -98,7 +107,8 @@ public class MainServiceImpl implements MainService{
 	}
 
 	public MyStatisticsReport getMyStatisticsReport() {
-		List<FuelRecord> fuelRecords = loadAllFuelRecords();
+		String loggedInUserName = getLoggedInUsername();
+		List<FuelRecord> fuelRecords = getFuelRecords(loggedInUserName);
 		MyStatisticsReport report = new MyStatisticsReport();
 		//need to get fuel records sorted by date
 		report.setFuelRecords(fuelRecords);
@@ -137,8 +147,9 @@ public class MainServiceImpl implements MainService{
 
 	public void createUser(CreateUser createUser) {
 		UserInfo userInfo = createUser.getUserInfo();
-		String unparsedCarModel = userInfo.getCarInstance().getCarModel().getModel();
-		CarModel carModel = getCarModel(unparsedCarModel);
+		CarModel carModel = userInfo.getCarInstance().getCarModel(); // carModel without id
+		//getting the car id
+		carModel = carModelRepositoryCustom.findByCompanyAndModel(carModel.getCompany(),carModel.getModel());
 		userInfo.getCarInstance().setCarModel(carModel);
 		User user = new User();
 		user.setPassword(createUser.getPassword());
@@ -154,25 +165,21 @@ public class MainServiceImpl implements MainService{
 		
 	}
 
-	private CarModel getCarModel(String unparsedCarModel) {
-		String[] splitted = unparsedCarModel.split(" - ");
-		if(splitted.length != 2){
-			System.out.println("MainService.getCarModel: Wrong num of arguments in unparsed car model");
-		}
-			
-		String company = splitted[0];
-		String model = splitted[1];
-		
-		CarModel carModel = carModelRepositoryCustom.findByCompanyAndModel(company,model);
-		return carModel;
+	
+	private String getLoggedInUsername(){
+		 Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	     return auth.getName();
 	}
 
-
+	public List<String> getCarModels(String carBrand) {
+		return carModelRepositoryCustom.getCarModels(carBrand);
+	}
 	
-//	public void createUser(CreateUser userInfo){
-////		userInfoRepository.saveAndFlush(userInfo);
-////		userRepository.saveUser(user);
-//	}
+	public List<String> getCarBrands() {
+		return carModelRepositoryCustom.getCarBrands();
+	}
+	
+	
 	
 	
 }

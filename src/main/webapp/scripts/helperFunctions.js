@@ -46,3 +46,12 @@ function generateOptions(options,label) {
     return html;
 }
 
+function generateOptionsWithValueExtractor(objs,label,valueExtractor){
+	var options = [];
+    for (var i = 0; i < objs.length; i += 1) {
+    	options[i] = valueExtractor(objs[i]);	
+    }
+    return generateOptions(options,label);
+}
+
+

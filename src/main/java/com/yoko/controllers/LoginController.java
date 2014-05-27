@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.yoko.model.CreateUser;
-import com.yoko.model.UserInfo;
 import com.yoko.service.MainService;
 
 
@@ -35,6 +34,9 @@ public class LoginController {
 	
 	@RequestMapping (value="/signUp",method=RequestMethod.POST)
 	public String signUp (@ModelAttribute("createUser") CreateUser createUser, BindingResult result){
+		if(!createUser.getPassword().equals(createUser.getRetypePassword())){
+			return "signUp";
+		}
 		mainService.createUser(createUser);
 		return "login";
 	}
