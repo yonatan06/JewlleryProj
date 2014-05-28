@@ -43,8 +43,8 @@
 	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
 		<property name="url" value="jdbc:mysql://localhost:3306/pics?autoReconnect=true" />
-		<property name="username" value="root"/>
-		<property name="password" value="pass"/>
+		<property name="username" value="YOKODB"/>
+		<property name="password" value="Admin123#"/>
 	</bean>
 
 </beans>
